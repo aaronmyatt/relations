@@ -12,11 +12,12 @@
     "test:e2e": "cross-env TEST=e2e ava ./test/e2e/**/*"
   },
   "dependencies": {
-    "@aaronmyatt/relations-data-model": "0.0.2",
+    "@aaronmyatt/relations-data-model": "0.0.3",
     "@braid/vue-formulate": "^2.4.5",
     "@nuxtjs/pwa": "^3.2.2",
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.6",
+    "nuxt-buefy": "^0.4.4"
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",

@@ -1,8 +1,26 @@
 <template>
   <div>
     <ul>
-      <li v-for="contact in contacts" :key="contact.id">
-        {{ contact.id }} | {{ contact.firstName }}
+      <li class="mt-4" v-for="contact in contacts" :key="contact.id">
+        <div>
+          <div class="card">
+            <header class="card-header">
+              <div class="card-header-title is-capitalized">
+                {{ contact.firstName }} {{ contact.lastName }}
+              </div>
+            </header>
+            <div class="card-content">
+              <div v-for="key in ['email', 'telephone', 'birthday']" :key="key" class="columns">
+                <div class="column is-capitalized has-text-weight-bold is-hidden-"> {{ key }}</div>
+                <div class="column">{{ contact[key] }}</div>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <b-button class="card-footer-item is-primary is-light">Edit</b-button>
+              <b-button class="card-footer-item is-info is-light">Add Encounter</b-button>
+            </footer>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
@@ -11,7 +29,6 @@
 <script>
 export default {
   async created() {
-    await this.$models.Contact.generateMock();
     this.contacts = await this.$services.contactService.fetchAll();
   },
   data() {
