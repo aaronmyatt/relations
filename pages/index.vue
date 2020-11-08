@@ -1,16 +1,17 @@
 <template>
   <div class="container">
+    <h1 class="is-size-1">Relations</h1>
     <div class="container mt-6 columns">
       <div class="column is-one-third">
-        <h1 class="is-size-1">Contacts</h1>
+        <h2 class="is-size-2">Contacts</h2>
         <ContactList />
       </div>
       <div class="column is-one-third">
-        <h1 class="is-size-1">Encounters</h1>
+        <h2 class="is-size-2">Encounters</h2>
         <EncounterList />
       </div>
       <div class="column is-one-third">
-        <h1 class="is-size-1">Plans</h1>
+        <h2 class="is-size-2">Plans</h2>
         <PlanList />
       </div>
     </div>
@@ -20,10 +21,6 @@
 <script>
 export default {
   methods: {
-    async clearDatabase() {
-      await this.$database.delete();
-      location.reload();
-    },
   },
 };
 </script>
