@@ -6,12 +6,12 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
+    "generate": "DEPLOY_ENV=GH_PAGES nuxt generate --modern",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "cross-env TEST=unit ava ./test/specs/**/*",
     "test:e2e": "cross-env TEST=e2e ava ./test/e2e/**/*",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
-    "gendep": "npm run generate && npm run deploy"
+    "deploy": "DEPLOY_ENV=GH_PAGES push-dir --dir=dist --branch=gh-pages --cleanup",
+    "gendep": "DEPLOY_ENV=GH_PAGES npm run generate && npm run deploy"
   },
   "dependencies": {
     "@aaronmyatt/relations-data-model": "0.0.15",

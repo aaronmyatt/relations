@@ -1,6 +1,6 @@
 let router;
 
-if(process.env === 'production'){
+if(process.env.DEPLOY_ENV === 'GH_PAGES'){
   router = {
     router: {
       base: '/relations/'
@@ -8,7 +8,9 @@ if(process.env === 'production'){
   };
 } else {
   router = {
-    router: {}
+    router: {
+      base: '/'
+    }
   };
 }
 
@@ -62,5 +64,8 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     transpile: ['aaronmyatt/relations-data-model'],
+    devtools:
+      process.env.DEPLOY_ENV === 'GH_PAGES' ? 'source-map' : 'eval-source-map',
+    extractCSS: true,
   }
 };
