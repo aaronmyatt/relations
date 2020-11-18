@@ -9,7 +9,9 @@
     "generate": "nuxt generate",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "cross-env TEST=unit ava ./test/specs/**/*",
-    "test:e2e": "cross-env TEST=e2e ava ./test/e2e/**/*"
+    "test:e2e": "cross-env TEST=e2e ava ./test/e2e/**/*",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
+    "gendep": "npm run generate && npm run deploy"
   },
   "dependencies": {
     "@aaronmyatt/relations-data-model": "0.0.15",
@@ -26,6 +28,7 @@
     "cross-env": "^7.0.2",
     "jsdom": "^16.4.0",
     "jsdom-global": "^3.0.2",
+    "push-dir": "^0.4.1",
     "require-extension-hooks": "^0.3.3",
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^3.0.0",

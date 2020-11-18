@@ -1,9 +1,24 @@
+let router;
+
+if(process.env === 'production'){
+  router = {
+    router: {
+      base: '/<repository-name>/'
+    }
+  };
+} else {
+  router = {
+    router: {}
+  };
+}
+
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
+  ...router,
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
