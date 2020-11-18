@@ -61,11 +61,6 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    analyze: true,
-    // or
-    analyze: {
-      analyzerMode: 'static'
-    },
     transpile: ['aaronmyatt/relations-data-model'],
   }
-}
+};
