@@ -3,7 +3,7 @@ let router;
 if(process.env === 'production'){
   router = {
     router: {
-      base: '/<repository-name>/'
+      base: '/relations/'
     }
   };
 } else {
