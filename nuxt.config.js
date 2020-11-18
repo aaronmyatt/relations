@@ -49,6 +49,7 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
+    'nuxt-purgecss',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -60,6 +61,11 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    analyze: true,
+    // or
+    analyze: {
+      analyzerMode: 'static'
+    },
     transpile: ['aaronmyatt/relations-data-model'],
   }
 }
