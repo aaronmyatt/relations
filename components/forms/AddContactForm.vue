@@ -17,7 +17,10 @@
             </b-field>
 
             <b-field label="Birthday">
-                <b-datepicker v-model="contact.birthday" />
+                <b-datepicker 
+                    inline
+                    v-model="contact.birthday" 
+                />
             </b-field>
 
             <b-button 
@@ -33,18 +36,22 @@
 </template>
 
 <script>
+import EnterPressedMixin from '@/mixins/EnterPressed';
+
 export default {
-    created(){
-        this.contact = new this.$models.Contact();
-    },
+    mixins: [EnterPressedMixin],
     data(){
         return {
-            contact: null
+            contact: {}
         }
     },
     methods: {
         saveContact(){
-            this.$services.contactService.addOne(this.contact);
+            this.$store.dispatch('contacts/save', this.contact);
+            this.$emit('close');
+        },
+        enterPressedCallback(){
+            this.saveContact();
         }
     }
 }

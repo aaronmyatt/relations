@@ -12,8 +12,7 @@
     "test:e2e": "cross-env TEST=e2e ava ./test/e2e/**/*"
   },
   "dependencies": {
-    "@aaronmyatt/relations-data-model": "0.0.3",
-    "@braid/vue-formulate": "^2.4.5",
+    "@aaronmyatt/relations-data-model": "0.0.15",
     "@nuxtjs/pwa": "^3.2.2",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
@@ -21,7 +20,6 @@
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
-    "@nuxtjs/tailwindcss": "^3.1.0",
     "@vue/test-utils": "^1.1.0",
     "ava": "^3.13.0",
     "babel-plugin-module-resolver": "^4.0.0",

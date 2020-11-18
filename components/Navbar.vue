@@ -1,38 +1,32 @@
 <template>
   <b-navbar class="has-background-light" shadow>
-        <template slot="start">
-            <b-navbar-item href="/">
-                Home
+      <template slot="brand">
+            <b-navbar-item tag="router-link" :to="{ path: '/' }">
+                <span class="icon is-size-3 has-text-weight-bold">R</span>
             </b-navbar-item>
+        </template>
+        <template slot="start">
             <b-navbar-item>
-                <b-button @click="openContactFormModal">Add Contact</b-button>
+                <b-button 
+                    icon-left="account-plus"
+                    class="is-success"
+                    @click="openContactFormModal">
+                    Add Contact
+                </b-button>
             </b-navbar-item>
         </template>
         <template slot="end">
-            <b-navbar-item>
-                <b-button @click="clearDatabase">Clear Database</b-button>
+            <b-navbar-item tag="router-link" :to="{ path: '/settings' }">
+                Settings
             </b-navbar-item>
         </template>
     </b-navbar>
 </template>
 
 <script>
-import ContactForm from "@/components/ContactForm";
+import AddContactModal from '@/mixins/AddContactModal';
 
 export default {
-    methods: {
-        openContactFormModal(){
-            this.$buefy.modal.open({
-                parent: this,
-                component: ContactForm,
-                customClass: 'custom-class custom-class-2',
-                trapFocus: true
-            })
-        },
-        async clearDatabase() {
-            await this.$database.delete();
-            location.reload();
-        },
-    }
+    mixins: [AddContactModal]
 }
 </script>
