@@ -39,6 +39,8 @@ export default {
     
     if(firstTimeLogin.value){
       this.firstTimeAlert();
+      firstTimeLogin.value = false;
+      services.settingService.updateOne(firstTimeLogin)
     }
   },
   methods: {

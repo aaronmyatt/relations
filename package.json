@@ -14,7 +14,7 @@
     "gendep": "DEPLOY_ENV=GH_PAGES npm run generate && npm run deploy"
   },
   "dependencies": {
-    "@aaronmyatt/relations-data-model": "0.0.15",
+    "@aaronmyatt/relations-data-model": "0.0.16",
     "@nuxtjs/pwa": "^3.2.2",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
