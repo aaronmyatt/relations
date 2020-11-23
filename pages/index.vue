@@ -1,17 +1,16 @@
 <template>
   <div class="container">
-    <h1 class="is-size-1">Relations</h1> 
-    <div class="container mt-6 columns">
+    <div class="container mt-2 columns">
       <div class="column is-one-third">
-        <div class="level pr-4">
-          <h2 class="is-size-2">Contacts</h2>
-          <b-button 
-            icon-left="account-plus"
-            class="is-success"
-            @click="openContactFormModal">
-              Add
-          </b-button>
-        </div>
+        <h2 class="is-size-2">Contacts</h2>
+        <b-button
+          icon-left="account-plus"
+          class="is-success mb-2"
+          expanded
+          @click="openContactFormModal"
+        >
+          Add
+        </b-button>
         <ContactList />
       </div>
       <div class="column is-one-third">
@@ -27,32 +26,33 @@
 </template>
 
 <script>
-import AddContactModal from '@/mixins/AddContactModal';
+import AddContactModal from "@/mixins/AddContactModal";
 
 export default {
   mixins: [AddContactModal],
-  async created(){
+  async created() {
     const firstTimeLogin = await services.settingService.table
       .where("name")
       .equals("firstTimeLogin")
       .first();
-    
-    if(firstTimeLogin.value){
+
+    if (firstTimeLogin.value) {
       this.firstTimeAlert();
       firstTimeLogin.value = false;
-      services.settingService.updateOne(firstTimeLogin)
+      services.settingService.updateOne(firstTimeLogin);
     }
   },
   methods: {
     firstTimeAlert() {
       this.$buefy.dialog.alert({
-          type: "is-info",
-          size: "is-large",
-          title: 'Welcome to Relations!',
-          message: 'The intentionally simple network management app. <br /> <br /> Add contacts, plan encounters, take notes. <br /> <br /> Build better Relations.',
-          confirmText: 'Get Started!'
-      })
+        type: "is-info",
+        size: "is-large",
+        title: "Welcome to Relations!",
+        message:
+          "The intentionally simple network management app. <br /> <br /> Add contacts, plan encounters, take notes. <br /> <br /> Build better Relations.",
+        confirmText: "Get Started!",
+      });
     },
-  }
+  },
 };
 </script>

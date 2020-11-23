@@ -8,14 +8,20 @@
           </div>
         </header>
         <div class="card-content">
-          <div v-for="key in ['email', 'telephone']" :key="key" class="columns">
-            <div class="column is-capitalized has-text-weight-bold is-hidden-">
-              {{ key }}
+          <div class="columns is-mobile is-gapless mb-1">
+            <div class="column is-capitalized has-text-weight-bold is-hidden-mobile">
+              Email
             </div>
-            <div class="column">{{ contact[key] }}</div>
+            <div class="column">{{ contact.email }}</div>
           </div>
-          <div class="columns">
-            <div class="column is-capitalized has-text-weight-bold is-hidden-">
+          <div class="columns is-mobile is-gapless mb-1">
+            <div class="column is-capitalized has-text-weight-bold is-hidden-mobile">
+              Phone
+            </div>
+            <div class="column">{{ contact.telephone }}</div>
+          </div>
+          <div class="columns is-mobile is-gapless mb-1">
+            <div class="column is-capitalized has-text-weight-bold is-hidden-mobile">
               Birthday
             </div>
             <div class="column">
