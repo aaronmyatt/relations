@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="card">
-      <NuxtLink :to="{ name: 'contact-id', params: { id: contact.id }}">
+      <NuxtLink :to="{ name: 'contact-id', params: { id: contact.id } }">
         <header class="card-header">
           <div class="card-header-title is-capitalized">
             {{ contact.firstName }} {{ contact.lastName }}
@@ -9,19 +9,25 @@
         </header>
         <div class="card-content">
           <div class="columns is-mobile is-gapless mb-1">
-            <div class="column is-capitalized has-text-weight-bold is-hidden-mobile">
+            <div
+              class="column is-capitalized has-text-weight-bold is-hidden-mobile"
+            >
               Email
             </div>
             <div class="column">{{ contact.email }}</div>
           </div>
           <div class="columns is-mobile is-gapless mb-1">
-            <div class="column is-capitalized has-text-weight-bold is-hidden-mobile">
+            <div
+              class="column is-capitalized has-text-weight-bold is-hidden-mobile"
+            >
               Phone
             </div>
             <div class="column">{{ contact.telephone }}</div>
           </div>
           <div class="columns is-mobile is-gapless mb-1">
-            <div class="column is-capitalized has-text-weight-bold is-hidden-mobile">
+            <div
+              class="column is-capitalized has-text-weight-bold is-hidden-mobile"
+            >
               Birthday
             </div>
             <div class="column">
@@ -47,6 +53,13 @@
         >
           Add Encounter
         </b-button>
+        <b-button
+          v-if="!futurePlans"
+          @click="addPlan(contact)"
+          class="card-footer-item is-text"
+        >
+          Add Plan
+        </b-button>
       </footer>
     </div>
   </div>
@@ -55,7 +68,8 @@
 <script>
 import EditContactForm from "@/components/forms/EditContactForm";
 import AddEncounterForm from "@/components/forms/AddEncounterForm";
-import { models } from "@aaronmyatt/relations-data-model";
+import AddPlanForm from "@/components/forms/AddPlanForm";
+import { models, services } from "@aaronmyatt/relations-data-model";
 
 export default {
   props: {
@@ -65,6 +79,14 @@ export default {
         return value instanceof models.Contact;
       },
     },
+  },
+  data() {
+    return {
+      futurePlans: null,
+    };
+  },
+  async mounted() {
+    this.futurePlans = await this.contactHasFuturePlans();
   },
   methods: {
     editContact(contact) {
@@ -92,6 +114,27 @@ export default {
           contact,
         },
       });
+    },
+    addPlan(contact) {
+      const modal = this.$buefy.modal.open({
+        parent: this,
+        component: AddPlanForm,
+        customClass: "custom-class custom-class-2",
+        trapFocus: true,
+        scroll: "keep",
+        fullScreen: true,
+        props: {
+          contact,
+        },
+        events: {
+          close: async () => {
+            this.futurePlans = await this.contactHasFuturePlans();
+          },
+        },
+      });
+    },
+    contactHasFuturePlans() {
+      return services.planService.fetchFutureFor(this.contact).first();
     },
   },
 };
