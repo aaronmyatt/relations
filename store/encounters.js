@@ -22,6 +22,10 @@ export const actions = {
         await services.encounterService.updateOne(encounter);
         dispatch('load');
     },
+    async delete({ dispatch }, encounter) {
+        await services.encounterService.deleteOne(encounter.id);
+        dispatch('load');
+    },
     async load({ commit }) {
         const encounters = await services.encounterService.fetchAll().toArray();
         commit('update', encounters);

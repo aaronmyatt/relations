@@ -23,6 +23,10 @@ export const actions = {
         await services.contactService.updateOne(contact);
         dispatch('load');
     },
+    async delete({ dispatch }, contact) {
+        await services.contactService.deleteOne(contact.id);
+        dispatch('load');
+    },
     async load({ commit }) {
         const contacts = await services.contactService.fetchAll().toArray();
         commit('update', contacts);

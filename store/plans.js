@@ -31,6 +31,10 @@ export const actions = {
         await services.planService.updateOne(plan);
         dispatch('load');
     },
+    async delete({ dispatch }, plan) {
+        await services.planService.deleteOne(plan.id);
+        dispatch('load');
+    },
     async load({ commit }) {
         const plans = await services.planService.fetchAll().toArray();
         commit('update', plans);

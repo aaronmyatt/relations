@@ -3,7 +3,13 @@
     <div class="card">
       <header class="card-header">
         <div class="card-header-title is-capitalized">
-          {{ humanReadableWhen }} <span class="ml-2"> With: {{ contact.firstName }}</span>
+          {{ humanReadableWhen }} 
+          <span 
+            v-if="contact" 
+            class="ml-2"
+          > 
+            With: {{ contact.firstName }}
+          </span>
         </div>
       </header>
       <footer class="card-footer">

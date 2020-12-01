@@ -9,14 +9,23 @@
                     v-model="plan.when" 
                 />
             </b-field>
-            <b-button 
-                @click="editPlan"
-                class="has-background-success-light"
-                expanded 
-                outlined
-            >
-                Save
-            </b-button>
+            <div class="is-flex is-full">
+                <b-button 
+                    @click="editPlan"
+                    class="has-background-success-light"
+                    expanded 
+                    outlined
+                >
+                    Save
+                </b-button>
+                <b-button
+                    @click="deletePlan"
+                    icon-left="trash-can-outline"
+                    class="has-background-danger-light"
+                    outlined
+                >
+                </b-button>
+            </div>
         </div>
     </div>
 </template>
@@ -42,7 +51,19 @@ export default {
         },
         enterPressedCallback(){
             this.editPlan();
-        }
+        },
+        deletePlan() {
+            this.$buefy.dialog.confirm({
+                title: 'Are you sure?',
+                message: 'This plan will be deleted permenantly.',
+                type: 'is-danger',
+                hasIcon: true,
+                onConfirm: () => {
+                this.$store.dispatch("plans/delete", this.plan);
+                this.$emit("close");  
+                }
+            })
+        },
     }
 }
 </script>
