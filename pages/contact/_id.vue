@@ -1,6 +1,5 @@
 <template>
   <div v-if="contact" class="container">
-    <h1 class="is-size-1">Relation</h1>
     <div class="container mt-6 columns">
       <div class="column is-one-third">
         <h2 class="is-size-2">Contact</h2>
@@ -33,7 +32,7 @@ export default {
       plans: []
     }
   },
-  async created(){
+  created(){
     this.load()
   },
   methods: {
